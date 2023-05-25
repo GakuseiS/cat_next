@@ -1,0 +1,27 @@
+.phone-input {
+    padding          : 15px;
+    border           : 1px solid var(--lightGray);
+    box-sizing       : border-box;
+
+    font-size        : 20px;
+    line-height      : 20px;
+    text-transform   : uppercase;
+    font-family      : inherit;
+    outline          : none;
+
+    background-image : url("./assets/phone.png");
+    background-repeat: no-repeat;
+
+    &:hover {
+        border: 1px solid var(--gray);
+    }
+
+    &:active,
+    &:focus {
+        border: 1px solid var(--green);
+    }
+
+    &.error {
+        border: 1px solid var(var(--crimson));
+    }
+}

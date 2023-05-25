@@ -1,0 +1,94 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  orders    Order[]
+  Basket    Basket?
+}
+
+model Product {
+  id    String  @id @default(uuid())
+  type  String
+  title String
+  img   String?
+  size  String
+  taste String?
+  price Float
+}
+
+model Card {
+  id    Int    @id @default(autoincrement())
+  title String
+  img   String
+  size  String
+  taste String
+  price Float
+}
+
+model Addon {
+  id    Int    @id @default(autoincrement())
+  title String
+  size  String
+  price Float
+}
+
+model Program {
+  id      Int     @id @default(autoincrement())
+  name    String
+  weight  Float
+  age     Int
+  type    String
+  email   String
+  tel     String
+  comment String?
+  sugar   String?
+  water   String?
+  milk    String?
+  vitamin String?
+}
+
+model Order {
+  id        Int        @id @default(autoincrement())
+  allPrice  Float
+  createdAt DateTime   @default(now())
+  items     CardItem[]
+  user      User       @relation(fields: [userId], references: [id])
+  userId    Int
+}
+
+model Basket {
+  id       Int        @id @default(autoincrement())
+  allPrice Float
+  items    CardItem[]
+  user     User       @relation(fields: [userId], references: [id])
+  userId   Int        @unique
+}
+
+model CardItem {
+  id        Int     @id @default(autoincrement())
+  title     String
+  size      String
+  taste     String?
+  price     Float
+  count     Int
+  productId String
+  basket    Basket? @relation(fields: [basketId], references: [id], onDelete: Cascade)
+  basketId  Int?
+  Order     Order?  @relation(fields: [orderId], references: [id])
+  orderId   Int?
+}
