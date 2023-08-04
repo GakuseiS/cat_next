@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import cn from "classnames";
 import fLogo from "./assets/footer-logo.png";
-import { ROUTES } from "@/global/routes/routes.type";
+import { ROUTES } from "@/global/routes";
 import { usePathname } from "next/navigation";
 import "./footer.scss";
 
@@ -13,7 +13,6 @@ export const Footer = () => {
   const footerClass = cn({
     footer__alt: pathname !== ROUTES.homePage,
   });
-  console.log(footerClass);
   return (
     <div className="footer">
       <div className={"footer__top"}>

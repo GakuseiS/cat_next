@@ -11,24 +11,25 @@
   "dependencies": {
     "@hookform/resolvers": "^3.1.0",
     "@reduxjs/toolkit": "^1.9.5",
-    "@types/node": "20.2.3",
-    "@types/react": "18.2.6",
-    "@types/react-dom": "18.2.4",
     "classnames": "^2.3.2",
-    "eslint": "8.41.0",
-    "eslint-config-next": "13.4.3",
-    "next": "13.4.3",
+    "next": "13.4.8",
+    "next-auth": "^4.22.1",
     "rc-slider": "^10.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.9",
     "react-input-mask": "^2.0.4",
     "react-redux": "^8.0.5",
-    "typescript": "5.0.4",
     "yup": "^1.1.1"
   },
   "devDependencies": {
+    "@types/node": "20.2.3",
+    "@types/react": "18.2.6",
+    "@types/react-dom": "18.2.4",
     "@types/react-input-mask": "^3.0.2",
-    "sass": "^1.62.1"
+    "eslint": "8.41.0",
+    "eslint-config-next": "13.4.3",
+    "sass": "^1.62.1",
+    "typescript": "5.0.4"
   }
 }

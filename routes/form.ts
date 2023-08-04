@@ -2,9 +2,10 @@ import { Response, Router } from "express";
 import { check, validationResult } from "express-validator";
 import { prismaClient } from "../app";
 import { TypedRequest } from "../types";
+
 const router = Router();
 
-type requestBody = {
+type RequestBody = {
   name: string;
   weight: number;
   age: number;
@@ -26,7 +27,7 @@ router.post(
     check("email").isEmail(),
     check("tel").isLength({ min: 18, max: 18 }),
   ],
-  async (req: TypedRequest<requestBody>, res: Response) => {
+  async (req: TypedRequest<RequestBody>, res: Response) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       console.log(errors);

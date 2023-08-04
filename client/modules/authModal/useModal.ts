@@ -3,12 +3,10 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { FieldsValues, RegisterValues } from "./modal.types";
-import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/store/store.hook";
-import { ROUTES } from "@/global/routes/routes.type";
-import { login } from "@/store/loginSlice";
 import { setMessage } from "@/store/toastSlice";
-import { usePostLoginMutation, usePostRegisterMutation } from "@/api/login/login.queries";
+import { usePostRegisterMutation } from "@/api/login/login.queries";
+import { signIn } from "next-auth/react";
 
 const schema: yup.ObjectSchema<FieldsValues> = yup
   .object({
@@ -21,8 +19,6 @@ const schema: yup.ObjectSchema<FieldsValues> = yup
 export const useModal = ({ onClose }: { onClose: Function }) => {
   const [switcher, setSwitcher] = useState(true);
   const dispatch = useAppDispatch();
-  const router = useRouter();
-  const [postLogin] = usePostLoginMutation();
   const [postRegister] = usePostRegisterMutation();
   const {
     register,
@@ -44,10 +40,8 @@ export const useModal = ({ onClose }: { onClose: Function }) => {
 
   const loginHandler = handleSubmit(async (data) => {
     try {
-      const res = await postLogin(data).unwrap();
-      dispatch(login(res));
+      await signIn("credentials", { ...data, callbackUrl: "/" });
       onClose(false);
-      router.push(ROUTES.homePage);
     } catch (err: any) {
       dispatch(setMessage(err.data?.message));
       console.error("Ошибка авторизации");

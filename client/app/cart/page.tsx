@@ -1,27 +1,22 @@
 "use client";
-import React, { MouseEventHandler, useEffect } from "react";
+import React, { MouseEventHandler } from "react";
 import { useRouter } from "next/navigation";
-import { ROUTES } from "@/global/routes/routes.type";
+import { ROUTES } from "@/global/routes";
 import { setMessage } from "@/store/toastSlice";
 import { useDeleteBasketItemMutation, useDeleteBasketMutation, useGetBasketQuery } from "@/api/card/card.queries";
 import { usePostOrderMutation } from "@/api/order/order.queries";
-import { useAppDispatch, useAppSelector } from "@/store/store.hook";
+import { useAppDispatch } from "@/store/store.hook";
 import { Loader } from "@/ui/loader";
 import { Button } from "@/ui";
 import "./page.scss";
 
 export default function CartPage() {
   const router = useRouter();
-  const { token } = useAppSelector((state) => state.login);
   const { data: cartList, isLoading } = useGetBasketQuery();
   const [clearCard] = useDeleteBasketMutation();
   const [deleteItem] = useDeleteBasketItemMutation();
   const [postOrder] = usePostOrderMutation();
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    !token && router.push(ROUTES.homePage);
-  }, [token]);
 
   const clearCardHandler = async () => {
     try {
@@ -86,7 +81,7 @@ export default function CartPage() {
               </li>
             ))}
           </ol>
-          {<p className="cartPage__price">Общая стоимость: {cartList?.allPrice} руб.</p>}
+          <p className="cartPage__price">Общая стоимость: {cartList?.allPrice} руб.</p>
           <Button onClick={postOrderHandler}>Сделать заказ</Button>
           <Button className="cartPage__clear" onClick={clearCardHandler}>
             Очистить корзину

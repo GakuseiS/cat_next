@@ -2,8 +2,8 @@ import { Oswald } from "next/font/google";
 import { Footer } from "../modules/footer";
 import { Header } from "../modules/header";
 import { Metadata } from "next";
-import { StoreProvider } from "@/global/providers/storeProvider";
 import { Toast } from "@/components/toast";
+import { Providers } from "@/global/providers";
 import styles from "./layout.module.scss";
 import "./globals.css";
 
@@ -14,16 +14,16 @@ export const metadata: Metadata = {
   description: "Функциональное питание для котов",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ru">
       <body className={oswald.className}>
         <div className={styles.container}>
-          <StoreProvider>
+          <Providers>
             <Toast />
             <Header />
             {children}
-          </StoreProvider>
+          </Providers>
           <Footer />
         </div>
       </body>

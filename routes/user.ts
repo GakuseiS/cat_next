@@ -70,7 +70,6 @@ router.post(
       if (!areSame) {
         return res.status(400).json({ message: "Такого пользователя нет в системе" });
       }
-
       const token = jwt.sign({ id: candidate.id }, keys.SESSION_SECRET);
 
       res.json({ token, userId: candidate.id });

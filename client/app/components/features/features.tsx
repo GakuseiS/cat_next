@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { ROUTES } from "@/global/routes/routes.type";
+import { ROUTES } from "@/global/routes";
 import "./features.scss";
 
 export const Features = () => {

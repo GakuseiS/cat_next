@@ -5,7 +5,7 @@ import { TypedRequest } from "../types";
 import { check } from "express-validator";
 const router = Router();
 
-router.get("/", auth, async (req: TypedRequest<never>, res: Response) => {
+router.get("/", auth, async (req: TypedRequest<never>, res) => {
   try {
     if (req.user) {
       let basket = await prismaClient.basket.findFirst({

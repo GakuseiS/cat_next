@@ -41,7 +41,7 @@ export default function OrdersPage() {
           <p>Общая цена: {order.allPrice} руб.</p>
         </div>
       ))}
-      {!orders?.length && <p>У вас нет заказов</p>}
+      {!orders?.length ? <p>У вас нет заказов</p> : null}
     </div>
   );
 }

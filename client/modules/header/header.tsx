@@ -1,27 +1,24 @@
 "use client";
-import React, { useRef } from "react";
+import React, { FC, useRef } from "react";
 import cn from "classnames";
 import logoDesktop from "./assets/logo-desktop.png";
 import logoTablet from "./assets/logo-tablet.png";
 import Link from "next/link";
 import Image from "next/image";
-import { ROUTES } from "@/global/routes/routes.type";
-import { useAppSelector, useAppDispatch } from "@/store/store.hook";
+import { ROUTES } from "@/global/routes";
 import { usePathname } from "next/navigation";
 import { useDetectClick } from "@/global/hooks/useDetectClick";
-import { useRouter } from "next/navigation";
-import { logout } from "@/store/loginSlice";
 import { AuthModal } from "../authModal";
+import { signOut, useSession } from "next-auth/react";
 import "./header.scss";
 
-export const Header = () => {
+export const Header: FC = () => {
   const pathname = usePathname();
-  const dispatch = useAppDispatch();
-  const { token } = useAppSelector((state) => state.login);
   const match = pathname === ROUTES.homePage;
   const modalRef = useRef<HTMLDivElement>(null);
   const { isActive, setActive } = useDetectClick({ ref: modalRef });
-  const router = useRouter();
+  const session = useSession();
+  const withAuth = !!session.data;
 
   const linkStyles = (isActive?: boolean) => cn("header__link", !match && "alt", isActive && "active");
 
@@ -30,8 +27,7 @@ export const Header = () => {
   };
 
   const onClickLogout = () => {
-    dispatch(logout());
-    router.push(ROUTES.homePage);
+    signOut({ callbackUrl: "/" });
   };
 
   return (
@@ -53,35 +49,35 @@ export const Header = () => {
             Каталог продукции
           </Link>
         </li>
-        {!token && (
+        {!withAuth && (
           <li className="header__item">
             <Link className={linkStyles(pathname === ROUTES.formPage)} href={ROUTES.formPage}>
               Подбор программы
             </Link>
           </li>
         )}
-        {token && (
+        {withAuth && (
           <li className="header__item">
             <Link className={linkStyles(pathname === ROUTES.cartPage)} href={ROUTES.cartPage}>
               Корзина
             </Link>
           </li>
         )}
-        {token && (
+        {withAuth && (
           <li className="header__item">
             <Link className={linkStyles(pathname === ROUTES.ordersPage)} href={ROUTES.ordersPage}>
               Заказы
             </Link>
           </li>
         )}
-        {!token && (
+        {!withAuth && (
           <li className="header__item">
             <button className={linkStyles()} onClick={onClickLogin}>
               Вход
             </button>
           </li>
         )}
-        {token && (
+        {withAuth && (
           <li className="header__item">
             <button className={linkStyles()} onClick={onClickLogout}>
               Выйти
