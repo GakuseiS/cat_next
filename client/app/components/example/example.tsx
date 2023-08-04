@@ -37,8 +37,8 @@ export const Example = () => {
         </div>
 
         <div className="example__right">
-          <img className="example__catWas" src={catWas.src} width={`${(677 * slider) / 100}`} height="499" alt="was" />
-          <Image className="example__catBecame" src={catBecame} width={445} height="420" alt="became" />
+          <img className="example__catWas" src={catWas.src} width={(677 * slider) / 100} height="499" alt="was" />
+          <Image className="example__catBecame" src={catBecame} width={445} height={420} alt="became" />
           <div className="example__slider">
             <span className="example__label" onClick={() => setSlider(5)}>
               БЫЛО

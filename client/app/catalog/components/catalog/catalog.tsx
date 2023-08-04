@@ -1,22 +1,15 @@
 "use client";
-import React from "react";
-import { Loader } from "@/ui/loader";
+import React, { FC } from "react";
 import { Button } from "@/ui";
 import { CatalogItem } from "../catalogItem";
-import { useGetMainProductsQuery } from "@/api/product/product.queries";
 import "./catalog.scss";
+import { ProductData } from "@/api/product/product.types";
 
-export const Catalog = () => {
-  const { data: cards, isLoading } = useGetMainProductsQuery();
+interface CatalogProps {
+  cards: ProductData;
+}
 
-  if (isLoading) {
-    return (
-      <div className="catalog">
-        <Loader />
-      </div>
-    );
-  }
-
+export const Catalog: FC<CatalogProps> = ({ cards }) => {
   return (
     <div className="catalog">
       {cards?.map((card) => (

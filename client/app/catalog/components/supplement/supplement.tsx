@@ -1,14 +1,18 @@
 "use client";
-import React, { FormEventHandler } from "react";
+import React, { FC, FormEventHandler } from "react";
 import { useDispatch } from "react-redux";
 import { setMessage } from "@/store/toastSlice";
 import { Button } from "@/ui";
 import "./supplement.scss";
 import { useGetSupplementsQuery, usePostProductMutation } from "@/api/product/product.queries";
+import { ProductSupplements } from "@/api/product/product.types";
 
-export const Supplement = () => {
+interface SupplementsProps {
+  supplements: ProductSupplements;
+}
+
+export const Supplement: FC<SupplementsProps> = ({ supplements }) => {
   const dispatch = useDispatch();
-  const { data: supplements } = useGetSupplementsQuery();
   const [postProduct] = usePostProductMutation();
 
   const submitHandler: FormEventHandler<HTMLFormElement> = async (evt) => {

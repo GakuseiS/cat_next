@@ -7,3 +7,5 @@ export type ProductData = {
   taste: string;
   price: number;
 }[];
+
+export type ProductSupplements = Omit<ProductData, "img" | "taste">;
