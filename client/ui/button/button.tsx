@@ -1,20 +1,20 @@
-import classNames from "classnames";
-import React from "react";
-import "./button.scss";
+import classNames from 'classnames';
+import React from 'react';
+import './button.scss';
 
 interface ButtonProps {
   size?: string;
   color?: string;
   page?: string;
   children?: React.ReactNode;
-  type?: "submit" | "button";
+  type?: 'submit' | 'button';
   disabled?: boolean;
   className?: string;
   onClick?: () => void;
 }
 
 export const Button = (props: ButtonProps) => {
-  const { page, type, disabled, onClick, className, children, size = "medium", color = "green" } = props;
+  const { page, type, disabled, onClick, className, children, size = 'medium', color = 'green' } = props;
   const classes = classNames({
     button: true,
     [`${className}`]: !!className,

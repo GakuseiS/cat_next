@@ -1,9 +1,9 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { useForm } from "react-hook-form";
-import { useAppDispatch } from "@/store/store.hook";
-import { setMessage } from "@/store/toastSlice";
-import { usePostProgrammMutation } from "@/api/request/request.queries";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { usePostProgramMutation } from '@/api/request/request.queries';
+import { useAppDispatch } from '@/store/store.hook';
+import { setMessage } from '@/store/toastSlice';
 
 export type FormValues = {
   name: string;
@@ -41,10 +41,10 @@ export const schema: yup.ObjectSchema<FormValues> = yup
 export const useRequestForm = () => {
   const methods = useForm<FormValues>({
     resolver: yupResolver(schema),
-    mode: "onBlur",
+    mode: 'onBlur',
   });
   const { handleSubmit, reset } = methods;
-  const [postProgramm] = usePostProgrammMutation();
+  const [postProgramm] = usePostProgramMutation();
   const dispatch = useAppDispatch();
 
   const submitHandler = handleSubmit(async (data) => {

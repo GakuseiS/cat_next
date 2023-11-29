@@ -1,1 +1,1 @@
-export { PhoneInput } from "./phoneInput";
+export { PhoneInput } from './phoneInput';

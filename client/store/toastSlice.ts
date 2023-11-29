@@ -1,12 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  message: "",
+  message: '',
 };
 
 const toastSlice = createSlice({
   initialState,
-  name: "toast",
+  name: 'toast',
   reducers: {
     setMessage: (state, action) => {
       state.message = action.payload;

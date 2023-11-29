@@ -1,14 +1,13 @@
-"use client";
-import { useRouter } from "next/navigation";
-import React, { MouseEventHandler } from "react";
-import { useDeleteBasketItemMutation, useDeleteBasketMutation, useGetBasketQuery } from "@/api/card/card.queries";
-import { usePostOrderMutation } from "@/api/order/order.queries";
-import { ROUTES } from "@/global/routes";
-import { useAppDispatch } from "@/store/store.hook";
-import { setMessage } from "@/store/toastSlice";
-import { Button } from "@/ui";
-import { Loader } from "@/ui/loader";
-import "./page.scss";
+'use client';
+import { useRouter } from 'next/navigation';
+import React, { MouseEventHandler } from 'react';
+import { useDeleteBasketItemMutation, useDeleteBasketMutation, useGetBasketQuery } from '@/api/card/card.queries';
+import { usePostOrderMutation } from '@/api/order/order.queries';
+import { ROUTES } from '@/global/routes';
+import { useAppDispatch } from '@/store/store.hook';
+import { setMessage } from '@/store/toastSlice';
+import { Button, Loader } from '@/ui';
+import './page.scss';
 
 export default function CartPage() {
   const router = useRouter();
@@ -24,7 +23,7 @@ export default function CartPage() {
       dispatch(setMessage(data.message));
     } catch (err: any) {
       dispatch(setMessage(err.data?.message));
-      console.error("Ошибка очищения корзины");
+      console.error('Ошибка очищения корзины');
     }
   };
 
@@ -36,7 +35,7 @@ export default function CartPage() {
         dispatch(setMessage(data.message));
       } catch (err: any) {
         dispatch(setMessage(err.data?.message));
-        console.error("Ошибка удаления из корзины");
+        console.error('Ошибка удаления из корзины');
       }
     }
   };
@@ -48,42 +47,42 @@ export default function CartPage() {
         router.push(ROUTES.ordersPage);
       } catch (err: any) {
         dispatch(setMessage(err.data?.message));
-        console.error("Ошибка отправки заказа");
+        console.error('Ошибка отправки заказа');
       }
     }
   };
 
   if (isLoading) {
     return (
-      <div className="cartPage">
+      <div className='cartPage'>
         <Loader />
       </div>
     );
   }
 
   return (
-    <div className="cartPage">
-      <h1 className="cartPage__title">Корзина</h1>
+    <div className='cartPage'>
+      <h1 className='cartPage__title'>Корзина</h1>
       {cartList?.allPrice ? (
         <div>
-          <ol className="cartPage__list">
+          <ol className='cartPage__list'>
             {cartList.items?.map((pruduct) => (
-              <li key={pruduct.id} className="cartPage__item">
+              <li key={pruduct.id} className='cartPage__item'>
                 {pruduct.title} {pruduct.size} {pruduct.taste} - {pruduct.price} руб. - {pruduct.count} шт.
                 <button
-                  title="Удалить из корзины"
+                  title='Удалить из корзины'
                   data-id={pruduct.id}
                   onClick={deleteItemHandler}
-                  className="cartPage__delete"
+                  className='cartPage__delete'
                 >
                   ✕
                 </button>
               </li>
             ))}
           </ol>
-          <p className="cartPage__price">Общая стоимость: {cartList?.allPrice} руб.</p>
+          <p className='cartPage__price'>Общая стоимость: {cartList?.allPrice} руб.</p>
           <Button onClick={postOrderHandler}>Сделать заказ</Button>
-          <Button className="cartPage__clear" onClick={clearCardHandler}>
+          <Button className='cartPage__clear' onClick={clearCardHandler}>
             Очистить корзину
           </Button>
         </div>

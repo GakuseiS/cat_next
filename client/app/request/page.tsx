@@ -1,5 +1,5 @@
-import { RequestForm } from "./components/requestForm";
-import styles from "./page.module.scss";
+import { RequestForm } from './components/requestForm';
+import styles from './page.module.scss';
 
 export default function RequestPage() {
   return (

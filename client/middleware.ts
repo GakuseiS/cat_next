@@ -1,4 +1,4 @@
-import { withAuth } from "next-auth/middleware";
+import { withAuth } from 'next-auth/middleware';
 
 export default withAuth(function middleware() {}, {
   callbacks: {
@@ -6,4 +6,4 @@ export default withAuth(function middleware() {}, {
   },
 });
 
-export const config = { matcher: ["/cart", "/orders"] };
+export const config = { matcher: ['/cart', '/orders'] };

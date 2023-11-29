@@ -1,1 +1,1 @@
-export { Appeal } from "./appeal";
+export { Appeal } from './appeal';

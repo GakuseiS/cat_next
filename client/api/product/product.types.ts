@@ -8,4 +8,4 @@ export type ProductData = {
   price: number;
 }[];
 
-export type ProductSupplements = Omit<ProductData, "img" | "taste">;
+export type ProductSupplements = Omit<ProductData, 'img' | 'taste'>;

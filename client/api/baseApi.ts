@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import { getAuthToken } from '@/global/lib/auth/getAuthToken';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || process.env.API_BASE_URL;
 
 export const api = createApi({
   reducerPath: 'api',
@@ -42,7 +42,7 @@ export const baseApi = async ({ url, data, cache, next, token, method = 'GET' }:
   });
 
   if (!res.ok) {
-    throw Error(res.statusText);
+    throw new Error(res.statusText);
   }
 
   return res;

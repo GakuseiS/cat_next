@@ -1,8 +1,8 @@
-"use client";
-import classNames from "classnames";
-import React, { ChangeEventHandler, FocusEventHandler, forwardRef } from "react";
-import InputMask, { ReactInputMask } from "react-input-mask";
-import "./phoneInput.scss";
+'use client';
+import classNames from 'classnames';
+import React, { ChangeEventHandler, FocusEventHandler, forwardRef } from 'react';
+import InputMask, { ReactInputMask } from 'react-input-mask';
+import './phoneInput.scss';
 
 interface PhoneInputProps {
   id?: string;
@@ -20,14 +20,14 @@ export const PhoneInput = forwardRef<ReactInputMask, PhoneInputProps>((props, re
       ref={ref}
       onChange={props.onChange}
       onBlur={props.onBlur}
-      mask="+7 (999) 999-99-99"
-      className={classNames("input", props.className, props.error && "error")}
+      mask='+7 (999) 999-99-99'
+      className={classNames('input', props.className, props.error && 'error')}
       id={props.id}
-      placeholder="+7 (800) 900-60-90"
+      placeholder='+7 (800) 900-60-90'
       name={props.name}
       required={props.required}
     />
   );
 });
 
-PhoneInput.displayName = "PhoneInput";
+PhoneInput.displayName = 'PhoneInput';

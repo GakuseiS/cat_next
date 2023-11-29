@@ -1,4 +1,4 @@
-import { Appeal, Example, Features, How } from "./components";
+import { Appeal, Example, Features, How } from './components';
 
 export default async function Home() {
   return (

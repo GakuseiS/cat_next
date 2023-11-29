@@ -1,7 +1,7 @@
-"use client";
-import React from "react";
-import ReactDOM from "react-dom";
-import styles from "./alert.module.css";
+'use client';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import styles from './alert.module.css';
 
 interface AlertProps {
   message?: string;
