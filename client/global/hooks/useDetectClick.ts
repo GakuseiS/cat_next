@@ -1,7 +1,7 @@
 /**
  * Хук для обработки события клика вне области
  */
-import { useState, useLayoutEffect, RefObject, useCallback } from "react";
+import { useState, useLayoutEffect, RefObject, useCallback } from 'react';
 
 interface DetectClickHookProps {
   ref: RefObject<HTMLElement>;
@@ -9,14 +9,14 @@ interface DetectClickHookProps {
   clear?: () => void;
 }
 
-export const useDetectClick = ({ ref, initialState = false, clear }: DetectClickHookProps) => {
+export const useDetectClick = ({ ref, clear, initialState = false }: DetectClickHookProps) => {
   const [isActive, setIsActive] = useState(initialState);
 
   useLayoutEffect(() => {
-    document.addEventListener("mousedown", pageClickEvent);
+    document.addEventListener('mousedown', pageClickEvent);
 
     return () => {
-      document.removeEventListener("mousedown", pageClickEvent);
+      document.removeEventListener('mousedown', pageClickEvent);
     };
   }, []);
 

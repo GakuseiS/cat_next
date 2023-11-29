@@ -1,40 +1,41 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
-import { getSession } from "next-auth/react";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
+import { getAuthToken } from '@/global/lib/auth/getAuthToken';
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export const api = createApi({
-  reducerPath: "api",
+  reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3001",
+    baseUrl: API_BASE_URL,
     prepareHeaders: async (headers) => {
-      const session = await getSession();
-      const token = session?.token;
+      const token = await getAuthToken();
       if (token) {
-        headers.set("authorization", `Bearer ${token}`);
+        headers.set('authorization', `Bearer ${token}`);
       }
       return headers;
     },
   }),
 
-  tagTypes: ["BASKET", "ORDERS"],
+  tagTypes: ['BASKET', 'ORDERS'],
   endpoints: () => ({}),
 });
 
-type TApi = {
+type TApiOptions = {
   url: string;
   data?: any;
-  method?: "GET" | "POST" | "PUT" | "DELETE";
+  method?: 'GET' | 'POST' | 'PUT' | 'DELETE';
   next?: NextFetchRequestConfig;
   cache?: RequestCache;
   token?: string;
 };
 
-export const baseApi = async ({ url, method = "GET", data, cache, next, token }: TApi) => {
-  const res: Response = await fetch(`http://localhost:3001${url}`, {
+export const baseApi = async ({ url, data, cache, next, token, method = 'GET' }: TApiOptions) => {
+  const res: Response = await fetch(`${API_BASE_URL}${url}`, {
     method,
     headers: new Headers(
-      Object.assign({ "Content-Type": "application/json" }, token ? { Authorization: `Bearer ${token}` } : null)
+      Object.assign({ 'Content-Type': 'application/json' }, token ? { Authorization: `Bearer ${token}` } : null),
     ),
-    credentials: "same-origin",
+    credentials: 'same-origin',
     body: JSON.stringify(data),
     cache,
     next,

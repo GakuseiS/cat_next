@@ -1,20 +1,20 @@
-import { AuthOptions } from "next-auth";
-import Credentials from "next-auth/providers/credentials";
-import { postLogin } from "@/api/login/login.requests";
+import { AuthOptions } from 'next-auth';
+import Credentials from 'next-auth/providers/credentials';
+import { postLogin } from '@/api/login/login.requests';
 
 export const authConfig: AuthOptions = {
   providers: [
     Credentials({
       credentials: {
-        name: { type: "text" },
-        email: { type: "email" },
-        password: { type: "password" },
+        name: { type: 'text' },
+        email: { type: 'email' },
+        password: { type: 'password' },
       },
       async authorize(credentials) {
         const { email, password } = credentials || {};
-        if(email && password) {
-          const {body, status} = await postLogin({ email, password });
-          if(status === 200) {
+        if (email && password) {
+          const { body, status } = await postLogin({ email, password });
+          if (status === 200) {
             const user = body as { token: string; userId: number };
             const newUser = { id: user.userId, token: user.token };
             return newUser;
@@ -27,20 +27,20 @@ export const authConfig: AuthOptions = {
     }),
   ],
   pages: {
-    signIn: "/",
+    signIn: '/',
   },
   callbacks: {
     jwt({ token, user }) {
       if (user) {
         token.accessToken = user.token;
         token.user = {
-          id: user.id as number
+          id: user.id as number,
         };
       }
       return token;
     },
     session({ session, token }) {
-      return { ...session, user: { id: token.user.id }, token: token.accessToken };
+      return { ...session, user: { id: token.user.id } };
     },
   },
 };
