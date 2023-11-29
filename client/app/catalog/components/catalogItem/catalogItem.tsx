@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
+import { usePostProductMutation } from "@/api/product/product.queries";
 import { useAppDispatch } from "@/store/store.hook";
 import { setMessage } from "@/store/toastSlice";
 import { Button } from "@/ui";
-import { usePostProductMutation } from "@/api/product/product.queries";
 import "./catalogItem.scss";
 
 interface CatalogItemProps {

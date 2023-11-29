@@ -1,10 +1,10 @@
 "use client";
-import React from "react";
-import ReactDOM from "react-dom";
-import { FieldErrorsImpl } from "react-hook-form";
 import cn from "classnames";
-import { useModal } from "./useModal";
+import React, { forwardRef } from "react";
+import { createPortal } from "react-dom";
+import { FieldErrorsImpl } from "react-hook-form";
 import { RegisterValues } from "./modal.types";
+import { useModal } from "./useModal";
 import { Button, Input } from "@/ui";
 import "./modal.scss";
 
@@ -12,11 +12,11 @@ interface AuthModalProps {
   onClose: (state: boolean) => void;
 }
 
-export const AuthModal = React.forwardRef<HTMLDivElement, AuthModalProps>((props, ref) => {
+export const AuthModal = forwardRef<HTMLDivElement, AuthModalProps>((props, ref) => {
   const { onClose } = props;
   const { loginHandler, registerHandler, switcher, register, errors, switchContent } = useModal(props);
 
-  return ReactDOM.createPortal(
+  return <>{createPortal(
     <div className="modal">
       <div ref={ref} className="modal__box">
         <h2 className="modal__title">Личный кабинет</h2>
@@ -29,7 +29,7 @@ export const AuthModal = React.forwardRef<HTMLDivElement, AuthModalProps>((props
           </button>
         </div>
         {switcher && (
-          <form className="modal__login" onSubmit={loginHandler}>
+          <form className="modal__login" onSubmit={loginHandler} autoComplete="off">
             <p className="modal__text">Введите свой логин и пароль, чтобы войти</p>
             <Input placeholder="Логин" type="email" {...register("email")} error={!!errors.email} />
             <Input placeholder="Пароль" type="password" {...register("password")} error={!!errors.password} />
@@ -60,7 +60,7 @@ export const AuthModal = React.forwardRef<HTMLDivElement, AuthModalProps>((props
       </div>
     </div>,
     document.body
-  );
+  )}</>;
 });
 
 AuthModal.displayName = "AuthModal";

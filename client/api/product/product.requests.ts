@@ -1,5 +1,5 @@
-import { baseApi } from "../baseApi";
 import { ProductData, ProductSupplements } from "./product.types";
+import { baseApi } from "../baseApi";
 
 export async function getCatalogMain() {
   const res = await baseApi({ url: "/api/cards" });

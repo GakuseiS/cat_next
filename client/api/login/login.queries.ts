@@ -1,5 +1,5 @@
-import { api } from "../baseApi";
 import { LoginData, LoginParams, RegisterParams } from "./login.types";
+import { api } from "../baseApi";
 
 const extendedApi = api.injectEndpoints({
   endpoints: (builder) => ({

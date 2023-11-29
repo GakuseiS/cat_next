@@ -1,11 +1,11 @@
 "use client";
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
 import cn from "classnames";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import React from "react";
 import fLogo from "./assets/footer-logo.png";
 import { ROUTES } from "@/global/routes";
-import { usePathname } from "next/navigation";
 import "./footer.scss";
 
 export const Footer = () => {

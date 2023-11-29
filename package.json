@@ -5,13 +5,13 @@
   "main": "app.js",
   "scripts": {
     "heroku-postbuild": "npm run install-client && npm run build",
-    "start": "concurrently \"npm run server\" \"npm run start --prefix client\"",
+    "start": "concurrently \"npm run server\" \"bun run --cwd client start\"",
     "server": "ts-node app.ts",
     "server:dev": "nodemon app.ts --ignore client",
-    "client": "npm run dev --prefix client",
-    "install-client": "npm install --prefix client",
-    "build": "npm run build --prefix client",
-    "dev": "concurrently \"npm run server:dev\" \"npm run dev --prefix client\""
+    "client": "bun run --cwd client dev",
+    "install-client": "bun install --cwd client",
+    "build": "bun run --cwd client build",
+    "dev": "concurrently \"npm run server:dev\" \"bun run --cwd client dev\""
   },
   "keywords": [
     "mern"

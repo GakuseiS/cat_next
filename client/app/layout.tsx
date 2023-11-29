@@ -1,25 +1,32 @@
-import { Oswald } from "next/font/google";
+import { Metadata } from "next";
+import { getServerSession } from "next-auth";
+import { ReactNode } from "react";
+import styles from "./layout.module.scss";
 import { Footer } from "../modules/footer";
 import { Header } from "../modules/header";
-import { Metadata } from "next";
 import { Toast } from "@/components/toast";
+import { authConfig } from "@/configs/auth";
 import { Providers } from "@/global/providers";
-import styles from "./layout.module.scss";
-import "./globals.css";
+import "@/global/styles/globals.css";
 
-const oswald = Oswald({ subsets: ["cyrillic", "latin"] });
+interface RootLayoutProps {
+  children: ReactNode;
+}
+
 
 export const metadata: Metadata = {
   title: "Cat Energy",
   description: "Функциональное питание для котов",
 };
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: RootLayoutProps) {
+  const session = await getServerSession(authConfig);
+
   return (
     <html lang="ru">
-      <body className={oswald.className}>
+      <body>
         <div className={styles.container}>
-          <Providers>
+          <Providers session={session}>
             <Toast />
             <Header />
             {children}

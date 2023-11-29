@@ -1,9 +1,9 @@
 "use client";
-import React, { useState } from "react";
-import catWas from "./assets/Was.png";
-import catBecame from "./assets/cat2.png";
-import Slider from "rc-slider";
 import Image from "next/image";
+import Slider from "rc-slider";
+import React, { useState } from "react";
+import catBecame from "./assets/cat2.png";
+import catWas from "./assets/Was.png";
 import "./example.scss";
 
 export const Example = () => {

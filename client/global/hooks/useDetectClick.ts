@@ -4,7 +4,7 @@
 import { useState, useLayoutEffect, RefObject, useCallback } from "react";
 
 interface DetectClickHookProps {
-  ref: RefObject<any | null>;
+  ref: RefObject<HTMLElement>;
   initialState?: boolean;
   clear?: () => void;
 }
@@ -12,21 +12,21 @@ interface DetectClickHookProps {
 export const useDetectClick = ({ ref, initialState = false, clear }: DetectClickHookProps) => {
   const [isActive, setIsActive] = useState(initialState);
 
-  const pageClickEvent = useCallback((e: MouseEvent) => {
-    // Обработка клика если вне области курсор
-    const isMissClick = ref.current && !ref.current.contains(e.target);
-    if (isMissClick) {
-      setIsActive(false);
-      clear?.();
-    }
-  }, []);
-
   useLayoutEffect(() => {
     document.addEventListener("mousedown", pageClickEvent);
 
     return () => {
       document.removeEventListener("mousedown", pageClickEvent);
     };
+  }, []);
+
+  const pageClickEvent = useCallback((e: MouseEvent) => {
+    // Обработка клика если вне области курсор
+    const isMissClick = ref.current && !ref.current.contains(e.target as Node);
+    if (isMissClick) {
+      setIsActive(false);
+      clear?.();
+    }
   }, []);
 
   const setActive = (showing: boolean) => {

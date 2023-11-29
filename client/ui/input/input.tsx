@@ -1,7 +1,7 @@
 "use client";
+import classNames from "classnames";
 import React, { ChangeEventHandler, FocusEventHandler, useState } from "react";
 import "./input.scss";
-import classNames from "classnames";
 
 interface InputProps {
   name?: string;

@@ -1,5 +1,5 @@
-import React from "react";
 import classNames from "classnames";
+import React from "react";
 import "./button.scss";
 
 interface ButtonProps {
@@ -14,7 +14,7 @@ interface ButtonProps {
 }
 
 export const Button = (props: ButtonProps) => {
-  const { size = "medium", color = "green", page = "", type, disabled, onClick, className, children } = props;
+  const { page, type, disabled, onClick, className, children, size = "medium", color = "green" } = props;
   const classes = classNames({
     button: true,
     [`${className}`]: !!className,

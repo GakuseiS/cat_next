@@ -1,11 +1,11 @@
 "use client";
 import React, { FC, FormEventHandler } from "react";
 import { useDispatch } from "react-redux";
+import { usePostProductMutation } from "@/api/product/product.queries";
+import { ProductSupplements } from "@/api/product/product.types";
 import { setMessage } from "@/store/toastSlice";
 import { Button } from "@/ui";
 import "./supplement.scss";
-import { useGetSupplementsQuery, usePostProductMutation } from "@/api/product/product.queries";
-import { ProductSupplements } from "@/api/product/product.types";
 
 interface SupplementsProps {
   supplements: ProductSupplements;

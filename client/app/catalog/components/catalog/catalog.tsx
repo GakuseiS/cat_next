@@ -1,9 +1,9 @@
 "use client";
 import React, { FC } from "react";
-import { Button } from "@/ui";
 import { CatalogItem } from "../catalogItem";
 import "./catalog.scss";
 import { ProductData } from "@/api/product/product.types";
+import { Button } from "@/ui";
 
 interface CatalogProps {
   cards: ProductData;

@@ -1,7 +1,7 @@
 import React from "react";
 import { Catalog, Supplement } from "./components";
-import { getCatalogSupplements, getCatalogMain } from "@/api/product/product.requests";
 import styles from "./page.module.scss";
+import { getCatalogSupplements, getCatalogMain } from "@/api/product/product.requests";
 
 export const revalidate = 86_400;
 

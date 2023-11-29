@@ -1,13 +1,13 @@
 "use client";
-import React, { MouseEventHandler } from "react";
 import { useRouter } from "next/navigation";
-import { ROUTES } from "@/global/routes";
-import { setMessage } from "@/store/toastSlice";
+import React, { MouseEventHandler } from "react";
 import { useDeleteBasketItemMutation, useDeleteBasketMutation, useGetBasketQuery } from "@/api/card/card.queries";
 import { usePostOrderMutation } from "@/api/order/order.queries";
+import { ROUTES } from "@/global/routes";
 import { useAppDispatch } from "@/store/store.hook";
-import { Loader } from "@/ui/loader";
+import { setMessage } from "@/store/toastSlice";
 import { Button } from "@/ui";
+import { Loader } from "@/ui/loader";
 import "./page.scss";
 
 export default function CartPage() {

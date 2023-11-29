@@ -1,5 +1,5 @@
-import { api } from "../baseApi";
 import { ProductData } from "./product.types";
+import { api } from "../baseApi";
 
 const extendedApi = api.injectEndpoints({
   endpoints: (builder) => ({

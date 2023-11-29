@@ -1,11 +1,11 @@
 "use client";
-import can from "./assets/index-can.png";
-import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/ui";
-import { ROUTES } from "@/global/routes";
-import { FC } from "react";
+import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { FC } from "react";
+import can from "./assets/index-can.png";
+import { ROUTES } from "@/global/routes";
+import { Button } from "@/ui";
 import "./appeal.scss";
 
 export const Appeal: FC = () => {

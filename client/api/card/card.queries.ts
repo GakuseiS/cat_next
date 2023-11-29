@@ -1,5 +1,5 @@
-import { api } from "../baseApi";
 import { CardData } from "./card.types";
+import { api } from "../baseApi";
 
 const extendedApi = api.injectEndpoints({
   endpoints: (builder) => ({

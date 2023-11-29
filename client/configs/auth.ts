@@ -1,26 +1,27 @@
 import { AuthOptions } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import { postLogin } from "@/api/login/login.requests";
 
 export const authConfig: AuthOptions = {
   providers: [
     Credentials({
       credentials: {
-        name: { type: "text", placeholder: "Имя" },
-        email: { type: "email", placeholder: "Логин", required: true },
-        password: { placeholder: "Пароль", type: "password", required: true },
+        name: { type: "text" },
+        email: { type: "email" },
+        password: { type: "password" },
       },
-      async authorize(credentials, req) {
+      async authorize(credentials) {
         const { email, password } = credentials || {};
-        const res = await fetch("http://localhost:3001/api/users/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        });
-        const user: { token: string; userId: number } = await res.json();
-        const newUser = { id: String(user.userId), token: user.token };
-        if (newUser) return newUser;
+        if(email && password) {
+          const {body, status} = await postLogin({ email, password });
+          if(status === 200) {
+            const user = body as { token: string; userId: number };
+            const newUser = { id: user.userId, token: user.token };
+            return newUser;
+          } else {
+            throw new Error(JSON.stringify(body));
+          }
+        }
         return null;
       },
     }),
@@ -30,15 +31,16 @@ export const authConfig: AuthOptions = {
   },
   callbacks: {
     jwt({ token, user }) {
-      // Persist the OAuth access_token and or the user id to the token right after signin
       if (user) {
         token.accessToken = user.token;
-        token.id = String(user.id);
+        token.user = {
+          id: user.id as number
+        };
       }
       return token;
     },
     session({ session, token }) {
-      return { ...session, user: { id: token.id }, token: token.accessToken };
+      return { ...session, user: { id: token.user.id }, token: token.accessToken };
     },
   },
 };

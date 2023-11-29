@@ -1,11 +1,3 @@
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    margin: 0;
-}
-
 :root {
     --white      : #f2f2f2;
     --whiteSmoke : #ebebeb;

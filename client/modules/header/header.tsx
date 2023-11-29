@@ -1,15 +1,15 @@
 "use client";
-import React, { FC, useRef } from "react";
 import cn from "classnames";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { signOut, useSession } from "next-auth/react";
+import React, { FC, useRef } from "react";
 import logoDesktop from "./assets/logo-desktop.png";
 import logoTablet from "./assets/logo-tablet.png";
-import Link from "next/link";
-import Image from "next/image";
-import { ROUTES } from "@/global/routes";
-import { usePathname } from "next/navigation";
-import { useDetectClick } from "@/global/hooks/useDetectClick";
 import { AuthModal } from "../authModal";
-import { signOut, useSession } from "next-auth/react";
+import { useDetectClick } from "@/global/hooks/useDetectClick";
+import { ROUTES } from "@/global/routes";
 import "./header.scss";
 
 export const Header: FC = () => {
