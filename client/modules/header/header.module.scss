@@ -6,7 +6,7 @@
         padding: 25px 30px;
     }
 
-    &__list {
+    .list {
         display        : flex;
         justify-content: space-between;
         width          : 580px;
@@ -19,19 +19,19 @@
         }
     }
 
-    &__item {
+    .item {
         padding-top   : 15px;
 
         text-transform: uppercase;
         font-size     : 20px;
 
-        &--active {
-            border-bottom: 2px solid #fff;
+        &.active {
+            border-bottom: 2px solid var(--white);
             @media screen and (max-width: 768px) {
                 border-bottom: 2px solid var(--limeGreen);
             }
 
-            &--alt {
+            &.alt {
                 border-bottom: 2px solid var(--limeGreen);
             }
         }
@@ -40,9 +40,9 @@
         }
     }
 
-    &__link {
+    .link {
         padding         : 0;
-        color           : #fff;
+        color           : var(--white);
         text-decoration : none;
         font-size       : inherit;
         font-family     : inherit;
@@ -52,13 +52,13 @@
         background-color: transparent;
         cursor          : pointer;
         @media screen and (max-width: 768px) {
-            color: #000;
+            color: var(--black);
         }
 
         &:visited {
-            color: #fff;
+            color: var(--white);
             @media screen and (max-width: 768px) {
-                color: #000;
+                color: var(--black);
             }
         }
 
@@ -77,18 +77,18 @@
         }
 
         &.active {
-            border-bottom: 2px solid #fff;
+            border-bottom: 2px solid var(--white);
             @media screen and (max-width: 768px) {
                 border-bottom: 2px solid var(--limeGreen);
             }
         }
 
         &.alt {
-            color          : #000;
+            color          : var(--black);
             text-decoration: none;
 
             &:visited {
-                color: #000;
+                color: var(--black);
             }
 
             &:hover {

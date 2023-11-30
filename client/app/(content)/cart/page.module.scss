@@ -7,29 +7,29 @@
         padding: 0 30px;
     }
 
-    &__title {
+    .title {
         font-size  : 60px;
         font-weight: normal;
     }
 
-    &__list {
+    .list {
         padding: 0 0 0 20px;
     }
 
-    &__item {
+    .item {
         padding: 10px;
     }
 
-    &__price {
+    .price {
         padding-left: 30px;
     }
 
-    &__clear {
+    .clear {
         display    : inline-block;
         margin-left: 25px;
     }
 
-    &__delete {
+    .delete {
         height          : 25px;
         width           : 25px;
         margin-left     : 25px;
@@ -39,12 +39,12 @@
         border-radius   : 25%;
 
         cursor          : pointer;
-        color           : white;
+        color           : var(--pureWhite);
         font-family     : inherit;
 
     }
 
-    &__order {
+    .order {
         display: inline-block;
     }
 }

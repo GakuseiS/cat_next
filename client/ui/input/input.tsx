@@ -1,7 +1,7 @@
 'use client';
 import classNames from 'classnames';
-import React, { ChangeEventHandler, FocusEventHandler, useState } from 'react';
-import './input.scss';
+import React, { ChangeEventHandler, FocusEventHandler, forwardRef, useState } from 'react';
+import styles from './input.module.scss';
 
 interface InputProps {
   name?: string;
@@ -17,8 +17,9 @@ interface InputProps {
   error?: boolean;
 }
 
-export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const [value, setValue] = useState('');
+
   const onInputChange: ChangeEventHandler<HTMLInputElement> = (evt) => {
     let value = evt.target.value;
     if (props.type === 'number') {
@@ -35,7 +36,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref)
       value={value}
       onBlur={props.onBlur}
       id={props.id}
-      className={classNames('input', props.className, props.error && 'error')}
+      className={classNames(styles.input, props.className, props.error && styles.error)}
       name={props.name}
       placeholder={props.placeholder}
       type={props.type === 'number' ? 'text' : props.type}

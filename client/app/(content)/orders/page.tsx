@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
+import styles from './page.module.scss';
 import { useGetOrdersQuery } from '@/api/order/order.queries';
 import { Loader } from '@/ui';
-import './page.scss';
 
 const getFormattedDate = (date: string) =>
   new Intl.DateTimeFormat('ru-RU', {
@@ -19,15 +19,15 @@ export default function OrdersPage() {
 
   if (isLoading) {
     return (
-      <div className='ordersPage'>
+      <div className={styles.ordersPage}>
         <Loader />
       </div>
     );
   }
 
   return (
-    <div className='ordersPage'>
-      <h1 className='ordersPage__title'>Заказы</h1>
+    <div className={styles.ordersPage}>
+      <h1 className={styles.title}>Заказы</h1>
       {orders?.map((order) => (
         <div key={order.id}>
           <p>Время заказа {getFormattedDate(order.createdAt)}</p>
