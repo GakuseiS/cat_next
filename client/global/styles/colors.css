@@ -1,4 +1,5 @@
 :root {
+    --pureWhite  : white;
     --white      : #f2f2f2;
     --whiteSmoke : #ebebeb;
     --whiteSmoke2: #dcdcdc;
@@ -17,4 +18,5 @@
     --limeGreen  : #68b738;
     --red        : red;
     --crimson    : #C8102E;
+    --black      : black;
 }

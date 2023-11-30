@@ -1,5 +1,5 @@
 .footer {
-    &__map {
+    .map {
         border: none;
         width : 1440px;
         height: 400px;
@@ -9,11 +9,11 @@
         }
     }
 
-    &__top {
+    .top {
         position: relative;
     }
 
-    &__modal {
+    .modal {
         position        : absolute;
         top             : 90px;
         left            : 75px;
@@ -30,7 +30,7 @@
             width   : 100%;
         }
 
-        &-title {
+        .title {
             width         : 155px;
             margin        : 0;
 
@@ -39,7 +39,7 @@
             font-weight   : normal;
         }
 
-        &-address {
+        .address {
             width      : 160px;
             margin     : 0;
 
@@ -51,13 +51,13 @@
             }
         }
 
-        &-city {
+        .city {
             display   : inline-block;
             margin-top: 27px;
         }
     }
 
-    &__bottom {
+    .bottom {
         position        : relative;
         top             : -5px;
 
@@ -70,7 +70,7 @@
         }
     }
 
-    &__social {
+    .social {
         display    : flex;
         align-items: top;
         padding    : 0;
@@ -81,7 +81,7 @@
             margin-left: 165px;
         }
 
-        &-item {
+        .item {
             position           : relative;
             top                : -17px;
             display            : inline-block;
@@ -94,7 +94,7 @@
             background-repeat  : no-repeat;
             background-position: center;
 
-            &--vk {
+            &.vk {
                 margin-right    : 27px;
 
                 background-image: url("./assets/vk.png");
@@ -108,7 +108,7 @@
                 }
             }
 
-            &--insta {
+            &.instagram {
                 background-image: url("./assets/insta.png");
                 margin-right    : 23px;
 
@@ -121,7 +121,7 @@
                 }
             }
 
-            &--fb {
+            &.fb {
                 background-image: url("./assets/fb.png");
 
                 &:hover {
@@ -133,10 +133,5 @@
                 }
             }
         }
-    }
-}
-@media screen and (max-width: 768px) {
-    .footer__alt {
-        background-color: var(--white) !important;
     }
 }

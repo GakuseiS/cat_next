@@ -8,6 +8,7 @@ export const revalidate = 86_400;
 export default async function CatalogPage() {
   const cards = await getCatalogMain();
   const supplements = await getCatalogSupplements();
+
   return (
     <main className={styles.catalogPage}>
       <h1 className={styles.title}>Каталог продукции</h1>

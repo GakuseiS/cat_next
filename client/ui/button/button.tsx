@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
-import './button.scss';
+import styles from './button.module.scss';
 
 interface ButtonProps {
   size?: string;
@@ -15,15 +15,13 @@ interface ButtonProps {
 
 export const Button = (props: ButtonProps) => {
   const { page, type, disabled, onClick, className, children, size = 'medium', color = 'green' } = props;
-  const classes = classNames({
-    button: true,
-    [`${className}`]: !!className,
-    [`button-${size}`]: size,
-    [`button-${color}`]: color,
-    [`button-${page}`]: page,
-  });
   return (
-    <button type={type} className={classes} disabled={disabled} onClick={onClick}>
+    <button
+      type={type}
+      className={classNames(styles.button, styles[size], styles[color], page && styles[page], className)}
+      disabled={disabled}
+      onClick={onClick}
+    >
       {children}
     </button>
   );

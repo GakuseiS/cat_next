@@ -8,6 +8,10 @@ import { usePostRegisterMutation } from '@/api/login/login.queries';
 import { useAppDispatch } from '@/store/store.hook';
 import { setMessage } from '@/store/toastSlice';
 
+interface AuthModalHookParams {
+  onClose: (state: boolean) => void;
+}
+
 const schema: yup.ObjectSchema<FieldsValues> = yup
   .object({
     name: yup.string().min(3).optional(),
@@ -16,7 +20,7 @@ const schema: yup.ObjectSchema<FieldsValues> = yup
   })
   .required();
 
-export const useModal = ({ onClose }: { onClose: Function }) => {
+export const useAuthModal = ({ onClose }: AuthModalHookParams) => {
   const [switcher, setSwitcher] = useState(true);
   const dispatch = useAppDispatch();
   const [postRegister] = usePostRegisterMutation();

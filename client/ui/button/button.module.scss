@@ -2,31 +2,28 @@
     height        : 50px;
     border        : none;
     box-sizing    : border-box;
-
-    cursor        : pointer;
     font-size     : 20px;
     font-family   : inherit;
-
     text-transform: uppercase;
+    cursor        : pointer;
 
-    &-medium {
+    &.medium {
         width: 245px;
     }
 
-    &-small {
+    &.small {
         width: 168px;
     }
 
-    &-large {
+    &.large {
         width: 570px;
         @media screen and (max-width: 768px) {
             width: 280px;
         }
     }
 
-    &-gray {
+    &.gray {
         color           : var(--darkGray);
-
         background-color: var(--white);
         @media screen and (max-width: 768px) {
             width    : 245px;
@@ -44,9 +41,8 @@
         }
     }
 
-    &-green {
-        color           : white;
-
+    &.green {
+        color           : var(--white);
         background-color: var(--limeGreen);
 
         &:active,
@@ -59,7 +55,7 @@
         }
     }
 
-    &-catalog {
+    &.catalog {
         height   : 40px;
         font-size: 16px;
         @media screen and (max-width: 768px) {
@@ -70,10 +66,5 @@
     &[disabled] {
         background-color: var(--lightGray2);
         color           : var(--silver);
-    }
-}
-@media screen and (max-width: 768px) {
-    .button-catalog.button-medium {
-        width: 630px;
     }
 }

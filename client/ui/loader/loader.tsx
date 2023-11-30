@@ -1,10 +1,10 @@
 import React from 'react';
-import './loader.scss';
+import styles from './loader.module.scss';
 
 export const Loader = () => {
   return (
-    <div className='spin-wrapper'>
-      <div className='spinner'></div>
+    <div className={styles.container}>
+      <div className={styles.spinner}></div>
     </div>
   );
 };

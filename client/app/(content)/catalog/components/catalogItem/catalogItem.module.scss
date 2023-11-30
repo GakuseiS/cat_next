@@ -8,17 +8,17 @@
     padding         : 120px 35px 40px;
 
     background-color: var(--white);
-
-    &__added {
-        color: var(--pureGray) !important;
-    }
     @media screen and (max-width: 768px) {
         width        : 325px;
         padding-left : 39px;
         padding-right: 39px;
     }
 
-    &__wrapper {
+    .added {
+        color: var(--pureGray) !important;
+    }
+
+    .wrapper {
         position   : absolute;
         top        : -80px;
         left       : 0;
@@ -33,24 +33,24 @@
         }
     }
 
-    &__img {
+    .img {
         margin: 0 auto;
 
     }
 
-    &__title {
+    .title {
         font-weight   : normal;
         font-size     : 20px;
         text-transform: uppercase;
         text-align    : center;
     }
 
-    &__list {
+    .list {
         margin    : 0 0 30px;
         padding   : 0;
         list-style: none;
 
-        &-item {
+        .listItem {
             display        : flex;
             justify-content: space-between;
 

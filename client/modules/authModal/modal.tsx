@@ -4,7 +4,7 @@ import React, { forwardRef } from 'react';
 import { createPortal } from 'react-dom';
 import { FieldErrorsImpl } from 'react-hook-form';
 import { RegisterValues } from './modal.types';
-import { useModal } from './useModal';
+import { useAuthModal } from './useModal';
 import { Button, Input } from '@/ui';
 import './modal.scss';
 
@@ -14,7 +14,7 @@ interface AuthModalProps {
 
 export const AuthModal = forwardRef<HTMLDivElement, AuthModalProps>((props, ref) => {
   const { onClose } = props;
-  const { loginHandler, registerHandler, switcher, register, errors, switchContent } = useModal(props);
+  const { loginHandler, registerHandler, switcher, register, errors, switchContent } = useAuthModal(props);
 
   return (
     <>
