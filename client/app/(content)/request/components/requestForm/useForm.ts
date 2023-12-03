@@ -44,13 +44,13 @@ export const useRequestForm = () => {
     mode: 'onBlur',
   });
   const { handleSubmit, reset } = methods;
-  const [postProgramm] = usePostProgramMutation();
+  const [postProgram] = usePostProgramMutation();
   const dispatch = useAppDispatch();
 
   const submitHandler = handleSubmit(async (data) => {
     try {
       const { age, weight, sugar, water, milk, vitamin, ...rest } = data;
-      const res = await postProgramm({
+      const res = await postProgram({
         ...rest,
         age: +age,
         weight: +weight,
@@ -64,7 +64,6 @@ export const useRequestForm = () => {
       reset();
     } catch (err: any) {
       dispatch(setMessage(err.data?.message));
-      console.error(err);
     }
   });
 

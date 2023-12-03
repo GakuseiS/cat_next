@@ -1,6 +1,6 @@
 export type LoginData = {
   token: string;
-  userId: string;
+  userId: number;
 };
 
 export type LoginParams = {

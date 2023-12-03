@@ -4,7 +4,7 @@ import { api } from '../baseApi';
 const extendedApi = api.injectEndpoints({
   endpoints: (builder) => ({
     postProgram: builder.mutation<{ message: string }, RequestParams>({
-      query: (data) => ({ url: 'api/form', body: data, method: 'POST' }),
+      query: (data) => ({ url: 'form', body: data, method: 'POST' }),
     }),
   }),
 });

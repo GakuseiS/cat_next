@@ -1,49 +1,51 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
-import { getAuthToken } from '@/global/lib/auth/getAuthToken';
+import { isServerEnv } from '@/constants';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || process.env.API_BASE_URL;
+const DEFAULT_HEADERS = {
+  'Content-Type': 'application/json',
+};
 
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: API_BASE_URL,
-    prepareHeaders: async (headers) => {
-      const token = await getAuthToken();
-      if (token) {
-        headers.set('authorization', `Bearer ${token}`);
-      }
-      return headers;
-    },
+    baseUrl: '/api/cat',
   }),
 
   tagTypes: ['BASKET', 'ORDERS'],
   endpoints: () => ({}),
 });
 
-type TApiOptions = {
-  url: string;
-  data?: any;
-  method?: 'GET' | 'POST' | 'PUT' | 'DELETE';
-  next?: NextFetchRequestConfig;
-  cache?: RequestCache;
-  token?: string;
-};
-
-export const baseApi = async ({ url, data, cache, next, token, method = 'GET' }: TApiOptions) => {
-  const res: Response = await fetch(`${API_BASE_URL}${url}`, {
+export const baseApi = async <T>({
+  url,
+  data,
+  token,
+  searchParams,
+  headers = { ...DEFAULT_HEADERS },
+  method = 'GET',
+  ...restOptions
+}: TApiOptions): Promise<T> => {
+  let fullUrl = isServerEnv ? `${API_BASE_URL}/api/${url}` : `/api/cat${url}`;
+  if (searchParams) fullUrl += `?${searchParams}`;
+  if (isServerEnv && token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+  const res = await fetch(fullUrl, {
     method,
-    headers: new Headers(
-      Object.assign({ 'Content-Type': 'application/json' }, token ? { Authorization: `Bearer ${token}` } : null),
-    ),
+    headers,
     credentials: 'same-origin',
     body: JSON.stringify(data),
-    cache,
-    next,
+    ...restOptions,
   });
 
   if (!res.ok) {
-    throw new Error(res.statusText);
+    let body;
+    try {
+      body = await res.json();
+    } catch (err) {
+      body = res.statusText;
+    }
+    throw Error(JSON.stringify({ statusCode: res.status, body }));
   }
-
-  return res;
+  return res.json();
 };
