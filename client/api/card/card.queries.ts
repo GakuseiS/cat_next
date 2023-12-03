@@ -3,13 +3,13 @@ import { api } from '../baseApi';
 
 const extendedApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getBasket: builder.query<CardData, void>({ query: () => 'api/card', providesTags: ['BASKET'] }),
+    getBasket: builder.query<CardData, void>({ query: () => 'card', providesTags: ['BASKET'] }),
     deleteBasket: builder.mutation<{ message: string }, void>({
       query: () => ({ url: '/api/card', method: 'delete' }),
       invalidatesTags: ['BASKET'],
     }),
     deleteBasketItem: builder.mutation<{ message: string }, { id: string }>({
-      query: (data) => ({ url: `/api/card/${data.id}`, method: 'delete' }),
+      query: (data) => ({ url: `card/${data.id}`, method: 'delete' }),
       invalidatesTags: ['BASKET'],
     }),
   }),

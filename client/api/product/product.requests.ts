@@ -1,12 +1,12 @@
 import { ProductData, ProductSupplements } from './product.types';
-import { baseApi } from '../baseApi';
+import { serverApi } from '../serverApi';
 
 export async function getCatalogMain() {
-  const res = await baseApi({ url: '/api/cards' });
-  return res.json() as Promise<ProductData>;
+  const cards = await serverApi<ProductData>({ url: 'cards' });
+  return cards;
 }
 
 export async function getCatalogSupplements() {
-  const res = await baseApi({ url: '/api/addons' });
-  return res.json() as Promise<ProductSupplements>;
+  const addons = await serverApi<ProductSupplements>({ url: 'addons' });
+  return addons;
 }

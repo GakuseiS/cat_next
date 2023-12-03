@@ -1,6 +1,7 @@
-import { AuthOptions } from 'next-auth';
+import { AuthOptions, User } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import { postLogin } from '@/api/login/login.requests';
+import { getErrorData } from '@/utils/getErrorData';
 
 export const authConfig: AuthOptions = {
   providers: [
@@ -13,13 +14,13 @@ export const authConfig: AuthOptions = {
       async authorize(credentials) {
         const { email, password } = credentials || {};
         if (email && password) {
-          const { body, status } = await postLogin({ email, password });
-          if (status === 200) {
-            const user = body as { token: string; userId: number };
+          try {
+            const user = await postLogin({ email, password });
             const newUser = { id: user.userId, token: user.token };
-            return newUser;
-          } else {
-            throw new Error(JSON.stringify(body));
+            return newUser as User;
+          } catch (err: any) {
+            const error = getErrorData(err);
+            throw new Error(JSON.stringify(error.body));
           }
         }
         return null;
