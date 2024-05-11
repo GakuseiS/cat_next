@@ -2,9 +2,9 @@
 
 ## Запуск
 
-1. Установка зависимостей yarn install, cd client, yarn install;
+1. Установка зависимостей yarn install, cd client, bun install;
 2. Создать в корне файл .env, поместить туда DATABASE_URL для prisma;
-3. Накатить миграции npx prisma migrate dev;
+3. Применить миграции npx prisma migrate dev;
 4. Старт проекта для разработки/теста yarn dev.
    Опционально:
 5. Запуск только сервера в режиме разработки yarn server:dev;
