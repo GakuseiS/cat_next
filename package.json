@@ -1,27 +1,23 @@
 {
-  "name": "cat_energy_mern",
+  "name": "cat_energy_next",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
-    "heroku-postbuild": "npm run install-client && npm run build",
     "start": "concurrently \"npm run server\" \"bun run --cwd client start\"",
     "server": "ts-node app.ts",
     "server:dev": "nodemon app.ts --ignore client",
     "client": "bun run --cwd client dev",
-    "install-client": "bun install --cwd client",
+    "install-client": "bun install --cwd ./client",
     "build": "bun run --cwd client build",
-    "dev": "concurrently \"npm run server:dev\" \"bun run --cwd client dev\""
+    "dev": "concurrently \"npm run server:dev\" \"bun run --cwd client dev\"",
+    "setup": "concurrently \"yarn install \" \"bun install --cwd ./client\""
   },
-  "keywords": [
-    "mern"
-  ],
   "author": "Ilya Spiridonov",
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "4.4.0",
     "bcrypt": "^5.0.1",
-    "concurrently": "^7.4.0",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "express": "^4.17.1",
