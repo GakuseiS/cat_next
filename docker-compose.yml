@@ -6,13 +6,14 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
-    ports:
-      - 3306:3306
+    expose:
+      - 3306
     volumes:
       - db:/var/lib/mysql
     networks:
       - backend
   app:
+    image: ${IMAGE_APP_TAG}
     depends_on:
       - mysql
     build: ./
